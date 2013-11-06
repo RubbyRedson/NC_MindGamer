@@ -9,12 +9,15 @@
 //
 //
 
-package ru.netcracker.education;
+package ru.netcracker.education.abstract_classes;
 
+
+import ru.netcracker.education.Cell;
+import ru.netcracker.education.FieldCells;
 
 import java.util.concurrent.*;
 
-public class AbstractGamer implements Callable<Cell> {
+public abstract class AbstractGamer implements Callable<Cell> {
     private final FieldCells Field;
     private Cell getNextMove() {
         //here be dragons
@@ -26,7 +29,7 @@ public class AbstractGamer implements Callable<Cell> {
     }
     /*
     public void updateFieldCells(Cell move) {
-        this.Field.UpdateField(move);
+        this.PlayingField.UpdateField(move);
     }
       */
     public AbstractGamer(FieldCells f) {

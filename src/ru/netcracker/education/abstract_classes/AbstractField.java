@@ -9,21 +9,24 @@
 //
 //
 
-package ru.netcracker.education;
+package ru.netcracker.education.abstract_classes;
 
 
-class AbstractField {
+import ru.netcracker.education.Cell;
+import ru.netcracker.education.FieldCells;
+
+public abstract class AbstractField {
     private FieldCells Field;
 
-    AbstractField() {
+    protected AbstractField() {
         Field = new FieldCells();
     }
 
-    void updateField (Cell move) {
+    public void updateField (Cell move) {
         Field.UpdateField(move);
     }
 
-    FieldCells getField() {
+    protected FieldCells getField() {
         return Field;
     }
 }
