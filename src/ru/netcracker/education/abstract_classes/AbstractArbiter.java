@@ -15,8 +15,6 @@ package ru.netcracker.education.abstract_classes;
 import ru.netcracker.education.Cell;
 
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractArbiter {
@@ -29,28 +27,22 @@ public abstract class AbstractArbiter {
     protected static final TimeUnit TU = TimeUnit.SECONDS;
     //public Object Scores;
     protected AbstractField PlayingField;
-    protected List<Callable<Cell>> playerList;
-    protected Callable<Cell> player1;
-    protected Callable<Cell> player2;
-    protected ExecutorService executor; //тут должно быть кол-во необх тредов для игры
+    protected List<AbstractGamer> playerList;
+    protected AbstractGamer player1;
+    protected AbstractGamer player2;
 
-    public boolean hasWinner(Cell LatestMove) { //тут проверка на победителя
-        this.PlayingField.getField().checkHasWinner(LatestMove);
-        return false;
-    }
+    public abstract boolean hasWinner();
     
     public abstract void arrangeMatch();
     
-    public void checkValidityOfMove(Cell move) throws Exception {
+    public boolean checkValidityOfMove(Cell move) throws Exception {
         if (move.getVertical() < RangeVerticalLow || move.getVertical() > RangeVerticalHigh ||
                 move.getHorizontal() < RangeHorizontalLow || move.getHorizontal() > RangeHorizontalHigh ||
                 this.PlayingField.getField().getCells()[move.getHorizontal()][move.getVertical()].isFilled()) {   //valid coords
             //and if the named cell isn't already filled, the game is Tic-Tac-Toe
                              throw new IllegalArgumentException("Wrong move from player!");
         }
-        else {
-            updateField(move);
-        }
+        return true;
     }
 
     public abstract void updateField(Cell move);

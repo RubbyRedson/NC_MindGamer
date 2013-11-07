@@ -16,17 +16,13 @@ import ru.netcracker.education.Cell;
 import ru.netcracker.education.FieldCells;
 
 public abstract class AbstractField {
-    private FieldCells Field;
+    public FieldCells Field;
 
-    protected AbstractField() {
+    public AbstractField() {
         Field = new FieldCells();
     }
 
-    public void updateField (Cell move) {
-        Field.UpdateField(move);
-    }
+    public abstract void updateField (Cell move);
 
-    protected FieldCells getField() {
-        return Field;
-    }
+    public abstract FieldCells getField();
 }

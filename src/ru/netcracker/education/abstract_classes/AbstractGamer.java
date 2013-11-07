@@ -15,23 +15,14 @@ package ru.netcracker.education.abstract_classes;
 import ru.netcracker.education.Cell;
 import ru.netcracker.education.FieldCells;
 
-import java.util.concurrent.*;
+public abstract class AbstractGamer {
+    protected final FieldCells Field;
+    public abstract Cell getNextMove();
 
-public abstract class AbstractGamer implements Callable<Cell> {
-    private final FieldCells Field;
-    private Cell getNextMove() {
-        //here be dragons
-        return new Cell(1, 1, true);
-    }
-
-    public Cell call() {
-        return getNextMove();
-    }
-    /*
     public void updateFieldCells(Cell move) {
-        this.PlayingField.UpdateField(move);
+        this.Field.UpdateField(move);
     }
-      */
+
     public AbstractGamer(FieldCells f) {
         this.Field = f;
     }

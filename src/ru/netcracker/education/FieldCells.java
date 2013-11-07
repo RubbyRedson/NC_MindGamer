@@ -12,12 +12,12 @@ package ru.netcracker.education;
 
 
 
-class FieldCells {
+public class FieldCells {
     private static final int NUMBER_OF_HORIZONTAL_CELLS = 3;      //Tic-Tac-Toe
     private static final int NUMBER_OF_VERTICAL_CELLS = 3;
     private static final int NUMBER_OF_CELLS = NUMBER_OF_HORIZONTAL_CELLS * NUMBER_OF_VERTICAL_CELLS;
     private Cell[][] Cells;
-    FieldCells() {
+    public FieldCells() {
         Cells = new Cell[NUMBER_OF_HORIZONTAL_CELLS][NUMBER_OF_VERTICAL_CELLS];
         for (int i = 0; i < NUMBER_OF_HORIZONTAL_CELLS; i++) {
             for (int j = 0; j < NUMBER_OF_VERTICAL_CELLS; j++) {
@@ -30,11 +30,35 @@ class FieldCells {
         return this.Cells;
     }
 
-    public boolean checkHasWinner(Cell move) {
+    public boolean checkHasWinner() {
+        for (int i = 0; i < NUMBER_OF_HORIZONTAL_CELLS; i++) {
+            if (Cells[i][0].getFilledX() && Cells[i][1].getFilledX() && Cells[i][2].getFilledX() ||
+                    Cells[i][0].getFilledO() && Cells[i][1].getFilledO() && Cells[i][2].getFilledO()) {
+                return true;
+            }
+        }
+
+        for (int j = 0; j < NUMBER_OF_VERTICAL_CELLS; j++) {
+            if (Cells[0][j].getFilledX() && Cells[1][j].getFilledX() && Cells[2][j].getFilledX() ||
+                    Cells[0][j].getFilledO() && Cells[1][j].getFilledO() && Cells[2][j].getFilledO()) {
+                return true;
+            }
+        }
+
+        if (Cells[0][0].getFilledX() && Cells[1][1].getFilledX() && Cells[2][2].getFilledX() ||
+                Cells[0][0].getFilledO() && Cells[1][1].getFilledO() && Cells[2][2].getFilledO()) {
+            return true;
+        }
+
+        if (Cells[0][2].getFilledX() && Cells[1][1].getFilledX() && Cells[2][0].getFilledX() ||
+                Cells[0][2].getFilledO() && Cells[1][1].getFilledO() && Cells[2][0].getFilledO()) {
+            return true;
+        }
+
         return false;
     }
     
     public void UpdateField(Cell move) {
-        this.Cells[move.getHorizontal()][move.getVertical()].setFilled(true);
+        this.Cells[move.getHorizontal()][move.getVertical()].setFilledX(true);
     }
 }

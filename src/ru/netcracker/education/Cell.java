@@ -16,8 +16,8 @@ public class Cell {
     private final int Horizontal;
     private final int Vertical;
     private boolean Filled = false;  //in Tic-Tac-Toe matters if it is X or O
-    //private boolean FilledWithX = false;
-    //private boolean FilledWithO = false;
+    private boolean FilledWithX = false;
+    private boolean FilledWithO = false;
 
     /*public boolean CheckValidityOfVCoord(int VerticalCoord) {
         if (VerticalCoord > RangeVerticalLow && VerticalCoord < RangeVerticalHigh) {
@@ -50,22 +50,30 @@ public class Cell {
         return Filled;
     }
 
-    public void setFilled(boolean filled) {
-        this.Filled = filled;
-    }
-    /*
     public void setFilledX(boolean filled) {
-        if (!Filled) {
+        if (!isFilled()) {
             FilledWithX = filled;
             Filled = filled;
         }
     }
 
     public void setFilledO(boolean filled) {
-        if (!Filled) {
+        if (!isFilled()) {
             FilledWithO = filled;
             Filled = filled;
         }
     }
-    */
+
+    public boolean getFilledX() {
+        return FilledWithX;
+    }
+
+    public boolean getFilledO() {
+        return FilledWithO;
+    }
+
+    @Override
+    public String toString(){
+        return Horizontal + " " + Vertical + " is now filled with " + (isFilled() ? getFilledX() ? "X" : "O" : "-");
+    }
 }
